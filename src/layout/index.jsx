@@ -17,18 +17,17 @@ const Wrapper = styled.div`
 const Layout = () => {
   const [position, setPosition] = useState({ lat: 0, lon: 0 });
   useEffect(() => {
-    navigator.geolocation.getCurrentPosition((position) => setPosition({ lat: position.coords.latitude, lon: position.coords.latitude }));
+    navigator.geolocation.getCurrentPosition((position) => setPosition({ lat: position.coords.latitude, lon: position.coords.longitude }));
   }, []);
 
   const [{ places }, isLoading, err] = useFetch({ path: 'places' });
   const [{ places: user }, userIsLoading] = useFetch({ path: 'users/places' });
 
   const placesResult = sortPlacesByDistance(places || [], position.lat, position.lon);
-  const userResult = sortPlacesByDistance(user || [], position.lat, position.lon);
 
   return (
     <Wrapper>
-      <List text='찜한 목록' data={userResult} isLoading={userIsLoading} error={err} />
+      <List text='찜한 목록' data={user} isLoading={userIsLoading} error={err} />
       <List text='맛집 목록' data={placesResult} isLoading={isLoading} error={err} />
     </Wrapper>
   );
