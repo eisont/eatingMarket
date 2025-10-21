@@ -53,12 +53,15 @@ const Close = styled.div`
 `;
 
 const Modal = styled.div`
+  padding: 20px;
   width: 400px;
-  height: 500px;
-  background: #fababa;
+  height: 200px;
+  background: #fff;
+  border: 3px solid #aeaeae;
+  border-radius: 10px;
 
   position: fixed;
-  z-index: 9999999999999;
+  z-index: 999;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -79,6 +82,8 @@ const Bt = styled.div`
   padding: 10px;
   background: #fff;
   transition: 0.2s;
+  border: 3px solid #aeaeae;
+  border-radius: 5px;
 
   &:hover {
     cursor: pointer;
@@ -94,7 +99,7 @@ const ListItem = (pr) => {
   const Select = (item) => {
     const post = async () => {
       const { data } = await axios.post('http://localhost:3000/users/places', { place: item });
-      alert(data.message);
+      alert(data.message && '찜했습니다.');
       window.location.reload();
     };
     post();

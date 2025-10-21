@@ -1,12 +1,16 @@
 import styled from '@emotion/styled';
-import Footer from './Footer';
-import Header from './Header';
 import List from '../components/List';
 import { useFetch } from '../api/useFetch';
 import { useEffect, useState } from 'react';
 import { sortPlacesByDistance } from '../shared/lib/sortPlacesByDistance';
 
 const Wrapper = styled.div`
+  width: 100vwh;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   background: #aeaeae;
 `;
 
@@ -24,10 +28,8 @@ const Layout = () => {
 
   return (
     <Wrapper>
-      <Header />
       <List text='찜한 목록' data={userResult} isLoading={userIsLoading} error={err} />
       <List text='맛집 목록' data={placesResult} isLoading={isLoading} error={err} />
-      <Footer />
     </Wrapper>
   );
 };
